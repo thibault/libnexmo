@@ -26,5 +26,5 @@ tests:
 Credits
 -------
 
-Crafted with love by [Thibault Jouannic](http://www.miximum.fr]. Available for
+Crafted with love by [Thibault Jouannic](http://www.miximum.fr). Available for
 [Python / Django Freelancing](http://www.miximum.fr/a-propos/).
