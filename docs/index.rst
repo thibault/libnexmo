@@ -50,7 +50,7 @@ Send a text message and print response status for each sms actually sent.
 
     print response.message_count
     for msg in response.messages:
-        print msg.status
+        print msg.status, msg.message_price
 
 Contents
 --------
