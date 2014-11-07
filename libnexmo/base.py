@@ -2,10 +2,12 @@
 
 from __future__ import unicode_literals
 
-from libnexmo.response import NexmoResponse
+import requests
+
+from libnexmo.exceptions import status_to_error
 
 
-API_ENDPOINT = 'https://rest.nexmo.com/'
+API_ENDPOINT = 'https://rest.nexmo.com'
 
 
 class Nexmo(object):
@@ -27,16 +29,60 @@ class Nexmo(object):
     def send_sms(self, frm, to, text):
         """Sends a simple text message.
 
-        Example::
+        Example usage::
 
-            msg = "Cherie, n'oublie pas les gauffres !"
-            nexmo.send_sms('+33123456780', '+33987654321', msg)
+            >>> msg = "Cherie, n'oublie pas les gauffres !"
+            >>> nexmo.send_sms('+33123456780', '+33987654321', msg)
 
         :arg frm: The `from` field, a phone number (international format with a
             leading "+" or alphanumerical.
         :arg to: The `to` field, a phone number.
         :arg text: The message body.
 
-        Returns a :class:`~libnexmo.NexmoResponse`.
+        See :meth:`send_request` for return value and exceptions.
 
         """
+        api_url = '%s/sms/json' % API_ENDPOINT
+        params = {
+            'api_key': self.api_key,
+            'api_secret': self.api_secret,
+            'from': frm,
+            'to': to,
+            'text': text,
+        }
+        return self.send_request(api_url, params, method='POST')
+
+    def send_request(self, url, params, method='GET'):
+        """Sends a raw request to the given api endpoint.
+
+        :arg url: A Nexmpo api endpoint (json only)
+        :arg params: A parameter dictionnary
+
+        Returns a :class:`~libnexmo.NexmoResponse`.
+
+        Raises:
+
+            The library uses `Requests
+            <http://docs.python-requests.org/en/latest/>`_ to perform http
+            requests. `Requests exceptions
+            <http://docs.python-requests.org/en/latest/api/#requests.exceptions.RequestException>`_
+            won't be caught in case of connection error.
+
+            Any :class:`~libnexmo.exceptions.NexmoError` subclass.
+
+        """
+        assert url.startswith(API_ENDPOINT)
+        assert url.endswith('/json')
+        method = method.lower()
+        assert method in ['get', 'post']
+
+        response = requests.request(method, url, data=params)
+        response_json = response.json()
+        status = int(response_json['messages'][0]['status'])
+
+        if status != 0:
+            ErrorClass = status_to_error(status)
+            error = response_json['messages'][0]['error-text']
+            raise ErrorClass(error)
+
+        return None
