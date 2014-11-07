@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import requests
 
 from libnexmo.exceptions import status_to_error
+from libnexmo.response import NexmoResponse
 
 
 API_ENDPOINT = 'https://rest.nexmo.com'
@@ -85,4 +86,4 @@ class Nexmo(object):
             error = response_json['messages'][0]['error-text']
             raise ErrorClass(error)
 
-        return None
+        return NexmoResponse(response_json)
