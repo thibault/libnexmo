@@ -2,7 +2,9 @@ Python Nexmo
 ============
 
 `Python Nexmo` is a simple python wrapper for the [Nexmo
-Api](https://docs.nexmo.com/).
+Api](https://docs.nexmo.com/). [Check for the
+documention.](http://libnexmo.readthedocs.org/en/latest/)
+
 
 Installation
 ------------
