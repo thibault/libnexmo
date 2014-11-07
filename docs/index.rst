@@ -46,7 +46,7 @@ Send a text message and print response status for each sms actually sent.
     frm = '+33123456789'
     to = '+33987654321'
     msg = 'Please remember to pick up the bread before coming'
-    response = Nexmo.send_sms(frm, to, msg)
+    response = nexmo.send_sms(frm, to, msg)
 
     print response.message_count
     for msg in response.messages:
