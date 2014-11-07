@@ -2,4 +2,7 @@ test:
 	flake8 libnexmo --ignore=E501
 	py.test --cov libnexmo/
 
-.PHONY: test
+docs:
+	cd docs && make html
+
+.PHONY: test docs
