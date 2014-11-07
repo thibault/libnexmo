@@ -5,8 +5,12 @@ Python Nexmo
 Status](https://travis-ci.org/thibault/libnexmo.svg?branch=master)](https://travis-ci.org/thibault/libnexmo)
 
 `Python Nexmo` is a simple python wrapper for the [Nexmo
-Api](https://docs.nexmo.com/). [Check for the
-documention.](http://libnexmo.readthedocs.org/en/latest/)
+Api](https://docs.nexmo.com/).
+
+Documentation
+-------------
+
+[There is one! And it is there.](http://libnexmo.readthedocs.org/en/latest/)
 
 
 Installation
