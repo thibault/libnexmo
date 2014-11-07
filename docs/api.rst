@@ -21,3 +21,17 @@ Response
 
 .. autoclass:: NexmoResponse
     :members:
+
+
+.. py:module:: libnexmo.exceptions
+
+Exceptions
+----------
+
+Every call to the Nexmo API can raise the following exceptions.
+
+.. autoclass:: NexmoError
+    :members:
+
+.. autoclass:: InvalidCredentialsError
+    :members:
