@@ -2,6 +2,8 @@
 
 from __future__ import unicode_literals
 
+import re
+
 import requests
 
 from libnexmo.exceptions import status_to_error
@@ -35,14 +37,18 @@ class Nexmo(object):
             >>> msg = "Cherie, n'oublie pas les gauffres !"
             >>> nexmo.send_sms('+33123456780', '+33987654321', msg)
 
-        :arg frm: The `from` field, a phone number (international format with a
-            leading "+" or alphanumerical.
-        :arg to: The `to` field, a phone number.
+        :arg frm: The `from` field, a phone number (international format with
+            or without a leading "+" or alphanumerical).
+        :arg to: The `to` field, a phone number, same format as the `frm`
+            argument.
         :arg text: The message body.
 
         See :meth:`send_request` for return value and exceptions.
 
         """
+        frm = re.sub('[^\d]', '', frm)
+        to = re.sub('[^\d]', '', to)
+
         api_url = '%s/sms/json' % API_ENDPOINT
         params = {
             'api_key': self.api_key,
