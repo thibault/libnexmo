@@ -78,8 +78,6 @@ class Nexmo(object):
             Any :class:`~libnexmo.exceptions.NexmoError` subclass.
 
         """
-        assert url.startswith(API_ENDPOINT)
-        assert url.endswith('/json')
         method = method.lower()
         assert method in ['get', 'post']
 
