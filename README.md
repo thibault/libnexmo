@@ -4,6 +4,8 @@ Python Nexmo
 [![Build
 Status](https://travis-ci.org/thibault/libnexmo.svg?branch=master)](https://travis-ci.org/thibault/libnexmo)
 
+**Don't use this, it's unmaintained. [Use the official Nexmo lib](https://github.com/Nexmo/nexmo-python).
+
 `Python Nexmo` is a simple python wrapper for the [Nexmo
 Api](https://docs.nexmo.com/).
 

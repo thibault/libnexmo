@@ -79,7 +79,9 @@ class Nexmo(object):
 
         """
         method = method.lower()
-        assert method in ['get', 'post']
+
+        if method not in ['get', 'post']:
+            raise ValueError('The `method` parameter must be either `get` or `post`')
 
         response = requests.request(method, url, data=params)
         response_json = response.json()
